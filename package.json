@@ -1,0 +1,26 @@
+{
+  "name": "node-chat",
+  "version": "0.1.0",
+  "description": "Un chat en tiempo real para practicar Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CrisGadea/node-chat.git"
+  },
+  "keywords": [
+    "chat",
+    "server"
+  ],
+  "author": "Cristian Gadea",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CrisGadea/node-chat/issues"
+  },
+  "homepage": "https://github.com/CrisGadea/node-chat#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
