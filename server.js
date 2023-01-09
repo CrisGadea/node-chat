@@ -9,17 +9,23 @@ app.use(bodyParser.json());
 app.use(router);
 app.use(express.urlencoded({extended : false}));
 
+
+app.use("/app", express.static('public'));
+
 router.get('/message', (req, res) => {
     console.log(req.query);
     console.log(req.headers);
     res.header({
         "custom-header": "Nuestro valor personalizado"
     });
-    response.success(req, res, "Lista de mensajes", 200);
+    response.success(req, res, "Lista de mensajes");
 });
 
 router.post('/message', (req,res) => {
     console.log(req.body);
+    if (req.query.error == "ok") {
+        response.error(req, res, "Error Inesperado", 500, "Es solo una simulación de errores");    
+    }
     response.success(req, res, "El mensaje se agregó correctamente", 201);
 });
 
