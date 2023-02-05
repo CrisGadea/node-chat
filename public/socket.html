@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Sockets</title>
+    <script src="/socket.io/socket.io.js" type="application/json"></script>
+</head>
+<body>
+    <h1>Mira la consola</h1>
+    <script>
+        /*var socket = io.connect('http://localhost:3000', {
+            forceNew: true,
+        });*/
+
+        const socket = io("http://localhost:3000");
+
+        socket.on('message', (data) => {
+            console.log(data);
+        })
+    </script>
+</body>
+</html>
