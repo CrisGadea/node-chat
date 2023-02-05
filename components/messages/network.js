@@ -1,16 +1,19 @@
 const express = require('express');
-
+const multer = require('multer');
 const response = require('../../network/response');
-
+const controller = require('./controller');
 const router = express.Router();
 
-const controller = require('./controller');
+const upload = multer({
+    dest: 'public/files/',
+});
+
 /**
  * Method that return the messages of all contacts
  * or only the filtered messages from an user filter
  */
 router.get('/', (req, res) => {
-    const filterMessages = req.query.user || null;
+    const filterMessages = req.query.chat || null;
     controller.getMessages(filterMessages)
     .then((messageList) => {
         response.success(req, res, messageList, 200);
@@ -19,9 +22,12 @@ router.get('/', (req, res) => {
         response.error(req, res, 'Unexpected Error', 500, e);
     });
 });
+// Agregamos upload(multer) como Middleware de Express
+router.post('/', upload.single('file'), (req,res) => {
 
-router.post('/', (req,res) => {
-    controller.addMessage(req.body.user, req.body.message)
+    console.log(req.file);
+
+    controller.addMessage(req.body.chat, req.body.user, req.body.message, req.file)
     .then((fullMessage) => {
         response.success(req,res,fullMessage, 201);
     })
